@@ -123,14 +123,15 @@ export default function PlushifyPage() {
               )}
             </div>
             {result && (
-              <a
-                href="https://x.com/ThePlushifier"
+              <button
                 className={styles.orderBtn}
-                target="_blank"
-                rel="noopener noreferrer"
+                onClick={() => {
+                  sessionStorage.setItem('plushify_order_image', result);
+                  window.location.href = '/order';
+                }}
               >
                 Order your physical plush + NFT →
-              </a>
+              </button>
             )}
           </div>
         </div>
