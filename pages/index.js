@@ -107,9 +107,9 @@ export default function Home() {
           <h2>Token mechanics</h2>
           <div className={styles.steps}>
             <div className={styles.step}>
-              <span className={styles.stepNum}>5%</span>
+              <span className={styles.stepNum}>77%</span>
               <h3>Buyback is live</h3>
-              <p>PLUSH is configured as a tokenized agent with a live buyback allocation. The machine can feed value back into the token economy.</p>
+              <p>PLUSH is configured as a tokenized agent with a live 77% buyback allocation. The machine can feed a huge share of agent-side revenue back into the token economy.</p>
             </div>
             <div className={styles.step}>
               <span className={styles.stepNum}>10%</span>
