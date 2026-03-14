@@ -67,7 +67,7 @@ export default function Arena() {
       </Head>
 
       <header className={styles.header}>
-        <a href="/" className={styles.logo}>🧸 Plushify</a>
+        <a href="/" className={styles.logo}><span className={styles.logoMark}>🧸</span><span className={styles.logoText}>Plushify</span></a>
         <div className={styles.headerRight}>
           <a href="/plushify" className={styles.pill}>+ Submit yours</a>
         </div>

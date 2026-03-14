@@ -75,7 +75,7 @@ export default function Order() {
       </Head>
 
       <header className={styles.header}>
-        <a href="/" className={styles.logo}>🧸 Plushify</a>
+        <a href="/" className={styles.logo}><span className={styles.logoMark}>🧸</span><span className={styles.logoText}>Plushify</span></a>
       </header>
 
       <main className={styles.main}>
