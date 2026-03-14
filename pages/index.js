@@ -124,6 +124,27 @@ export default function Home() {
           </div>
         </section>
 
+        <section className={styles.howItWorks}>
+          <h2>Transparency</h2>
+          <div className={styles.steps}>
+            <div className={styles.step}>
+              <span className={styles.stepNum}>104.9977M</span>
+              <h3>Total locked / vesting</h3>
+              <p>PLUSH currently has 104.9977M tokens locked or vesting across Streamflow contracts rather than floating loose in the market.</p>
+            </div>
+            <div className={styles.step}>
+              <span className={styles.stepNum}>4 + 1</span>
+              <h3>Lock structure</h3>
+              <p>Four linear Streamflow contracts plus one price-based vesting fund create the visible lock stack behind the factory.</p>
+            </div>
+            <div className={styles.step}>
+              <span className={styles.stepNum}>onchain</span>
+              <h3>Public receipts</h3>
+              <p>The contract IDs are public, auditable, and easy to verify for anyone who wants to inspect the lockup structure directly.</p>
+            </div>
+          </div>
+        </section>
+
         <section className={styles.ctaBanner}>
           <h2>Not just a meme. A machine.</h2>
           <p>Buybacks, burns, locked production-linked supply, and a real toy factory mission — all pointed at one ridiculous goal.</p>
