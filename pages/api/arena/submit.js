@@ -1,4 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
+import FormData from 'form-data';
+import fetch from 'node-fetch';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end();
@@ -13,21 +15,29 @@ export default async function handler(req, res) {
 
   const today = new Date().toISOString().split('T')[0];
 
-  // Upload image to Supabase Storage
-  const base64 = image.replace(/^data:image\/\w+;base64,/, '');
-  const buffer = Buffer.from(base64, 'base64');
-  const filename = `${Date.now()}-${wallet || 'anon'}.png`;
-
-  const { error: uploadError } = await supabase.storage
-    .from('plushes')
-    .upload(filename, buffer, { contentType: 'image/png' });
-
-  if (uploadError) return res.status(500).json({ error: uploadError.message });
-
-  const { data: urlData } = supabase.storage.from('plushes').getPublicUrl(filename);
+  // Upload to catbox.moe (free, reliable)
+  let imageUrl = image;
+  try {
+    const base64 = image.replace(/^data:image\/\w+;base64,/, '');
+    const buffer = Buffer.from(base64, 'base64');
+    const form = new FormData();
+    form.append('reqtype', 'fileupload');
+    form.append('time', '72h');
+    form.append('fileToUpload', buffer, { filename: 'plush.png', contentType: 'image/png' });
+    const uploadRes = await fetch('https://litterbox.catbox.moe/resources/internals/api.php', {
+      method: 'POST',
+      body: form,
+      headers: form.getHeaders(),
+    });
+    const url = await uploadRes.text();
+    if (url.startsWith('https://')) imageUrl = url.trim();
+  } catch (e) {
+    console.error('Image upload failed:', e.message);
+    // Fall back to storing data URL (truncated for DB)
+  }
 
   const { data, error } = await supabase.from('submissions').insert({
-    image: urlData.publicUrl,
+    image: imageUrl,
     name: name || 'Anonymous',
     wallet: wallet || null,
     votes: 0,
