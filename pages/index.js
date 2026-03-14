@@ -103,9 +103,30 @@ export default function Home() {
           </div>
         </section>
 
+        <section className={styles.howItWorks}>
+          <h2>Token mechanics</h2>
+          <div className={styles.steps}>
+            <div className={styles.step}>
+              <span className={styles.stepNum}>5%</span>
+              <h3>Buyback is live</h3>
+              <p>PLUSH is configured as a tokenized agent with a live buyback allocation. The machine can feed value back into the token economy.</p>
+            </div>
+            <div className={styles.step}>
+              <span className={styles.stepNum}>10%</span>
+              <h3>Supply reserved for production</h3>
+              <p>Part of supply is locked around Plushify output, tying the token story to actual factory activity instead of pure vibes alone.</p>
+            </div>
+            <div className={styles.step}>
+              <span className={styles.stepNum}>$1</span>
+              <h3>Per Plushify release cap</h3>
+              <p>Each Plushify can unlock up to $1 worth of reserved supply, giving the production side a simple rule people can understand.</p>
+            </div>
+          </div>
+        </section>
+
         <section className={styles.ctaBanner}>
-          <h2>Back the toy factory.</h2>
-          <p>$PLUSH is live on Pump.fun. Plush drops, early access, and the whole ridiculous mission start here.</p>
+          <h2>Not just a meme. A machine.</h2>
+          <p>Buybacks, burns, locked production-linked supply, and a real toy factory mission — all pointed at one ridiculous goal.</p>
           <a href={PUMP_FUN_URL} className={styles.ctaPrimary} target="_blank" rel="noopener noreferrer">
             Get $PLUSH on Pump.fun
           </a>
