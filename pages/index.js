@@ -24,11 +24,11 @@ export default function Home() {
               Submit any photo — PFP, meme, portrait — and get an exact plush replica made to order. Every plush comes with a 1/1 NFT.
             </p>
             <div className={styles.ctaRow}>
-              <a href="https://pump.fun" className={styles.ctaPrimary} target="_blank" rel="noopener noreferrer">
-                Buy $PLUSH
+              <a href="/plushify" className={styles.ctaPrimary}>
+                🧸 Plushify your PFP
               </a>
-              <a href="https://x.com/ThePlushifier" className={styles.ctaSecondary} target="_blank" rel="noopener noreferrer">
-                Follow @ThePlushifier
+              <a href="https://pump.fun" className={styles.ctaSecondary} target="_blank" rel="noopener noreferrer">
+                Buy $PLUSH
               </a>
             </div>
           </div>
