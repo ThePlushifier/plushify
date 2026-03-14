@@ -57,6 +57,9 @@ export default function Home() {
               <a href="/plushify" className={styles.ctaPrimary}>
                 🧸 Plushify your PFP
               </a>
+              <a href="/arena" className={styles.ctaSecondary}>
+                👀 View the Arena
+              </a>
               <a href={PUMP_FUN_URL} className={styles.ctaSecondary} target="_blank" rel="noopener noreferrer">
                 Buy $PLUSH
               </a>
