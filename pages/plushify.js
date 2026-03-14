@@ -138,14 +138,17 @@ export default function PlushifyPage() {
                   disabled={submitting}
                   onClick={async () => {
                     setSubmitting(true);
+                    setError(null);
                     try {
-                      await fetch('/api/arena/submit', {
+                      const res = await fetch('/api/arena/submit', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ image: result, name: name || 'Anonymous' }),
                       });
+                      const data = await res.json();
+                      if (!res.ok || data.error) throw new Error(data.error || `Server error ${res.status}`);
                       setSubmitted(true);
-                    } catch(e) { setError(e.message); }
+                    } catch(e) { setError(`Submit failed: ${e.message}`); }
                     finally { setSubmitting(false); }
                   }}
                 >
