@@ -2,6 +2,8 @@ import Head from 'next/head';
 import { useState } from 'react';
 import styles from '../styles/Order.module.css';
 
+const X_URL = 'https://x.com/ThePlushifier';
+
 export default function Order() {
   const [form, setForm] = useState({ name: '', email: '', address: '', city: '', country: '', wallet: '', notes: '' });
   const [image, setImage] = useState(null);
@@ -9,7 +11,6 @@ export default function Order() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Pull image from sessionStorage if coming from plushify page
   useState(() => {
     if (typeof window !== 'undefined') {
       const img = sessionStorage.getItem('plushify_order_image');
@@ -44,23 +45,33 @@ export default function Order() {
     }
   };
 
-  if (submitted) return (
-    <div className={styles.page}>
-      <div className={styles.success}>
-        <div className={styles.successIcon}>🧸</div>
-        <h1>Order received!</h1>
-        <p>The Plushifier has your order. You'll hear from us within 48 hours with a confirmation and timeline.</p>
-        <p className={styles.successSub}>Keep an eye on <a href="https://x.com/ThePlushifier" target="_blank" rel="noopener noreferrer">@ThePlushifier</a> for updates.</p>
-        <a href="/" className={styles.backBtn}>Back to Plushify</a>
+  if (submitted)
+    return (
+      <div className={styles.page}>
+        <div className={styles.success}>
+          <div className={styles.successIcon}>🧸</div>
+          <h1>Order received!</h1>
+          <p>The Plushifier has your order. You&apos;ll hear from us within 48 hours with next steps, pricing, and timeline details.</p>
+          <p className={styles.successSub}>
+            Keep an eye on{' '}
+            <a href={X_URL} target="_blank" rel="noopener noreferrer">
+              @ThePlushifier
+            </a>{' '}
+            for factory updates.
+          </p>
+          <a href="/" className={styles.backBtn}>Back to Plushify</a>
+        </div>
       </div>
-    </div>
-  );
+    );
 
   return (
     <div className={styles.page}>
       <Head>
         <title>Order Your Plush — Plushify</title>
-        <meta name="description" content="Order your custom 1/1 plush + NFT. Submit your photo and we'll make it real." />
+        <meta
+          name="description"
+          content="Request your custom Plushify build. Submit shipping details, wallet address, and notes for your made-to-order plush + matching 1/1 NFT."
+        />
       </Head>
 
       <header className={styles.header}>
@@ -70,7 +81,7 @@ export default function Order() {
       <main className={styles.main}>
         <div className={styles.hero}>
           <h1>Order your plush.</h1>
-          <p>Fill in your details and we'll make your plush real. Every order includes a 1/1 NFT minted to your wallet.</p>
+          <p>Lock in your custom build. Every approved Plushify order is designed as a physical collectible with a matching 1/1 NFT.</p>
         </div>
 
         <div className={styles.layout}>
@@ -119,14 +130,14 @@ export default function Order() {
               <div className={styles.sectionLabel}>NFT</div>
               <div className={styles.field}>
                 <label>Solana wallet address</label>
-                <input name="wallet" value={form.wallet} onChange={handleChange} placeholder="Your Solana wallet address (for the NFT)" />
+                <input name="wallet" value={form.wallet} onChange={handleChange} placeholder="Your Solana wallet address for the matching NFT" />
               </div>
             </div>
 
             <div className={styles.section}>
               <div className={styles.field}>
                 <label>Notes (optional)</label>
-                <textarea name="notes" value={form.notes} onChange={handleChange} placeholder="Any special requests, size preferences, etc." rows={3} />
+                <textarea name="notes" value={form.notes} onChange={handleChange} placeholder="Size preferences, accessories, cursed details we should keep, etc." rows={3} />
               </div>
             </div>
 
@@ -137,7 +148,7 @@ export default function Order() {
             </button>
 
             <p className={styles.disclaimer}>
-              Pricing and payment will be confirmed via email. Currently accepting early orders — $PLUSH holders get priority fulfillment.
+              Orders are reviewed manually before production. Pricing and payment details are confirmed after submission.
             </p>
           </form>
         </div>

@@ -2,6 +2,8 @@ import Head from 'next/head';
 import { useState, useRef } from 'react';
 import styles from '../styles/Plushify.module.css';
 
+const PUMP_FUN_URL = 'https://pump.fun/coin/4B2obgHGfUYg9nEvENpnBv9WJut8pXtKDPHx4VsRpump';
+
 export default function PlushifyPage() {
   const [preview, setPreview] = useState(null);
   const [result, setResult] = useState(null);
@@ -35,7 +37,7 @@ export default function PlushifyPage() {
     setResult(null);
 
     try {
-      const blob = await fetch(preview).then(r => r.blob());
+      const blob = await fetch(preview).then((r) => r.blob());
       const form = new FormData();
       form.append('image', blob, 'pfp.png');
 
@@ -55,37 +57,42 @@ export default function PlushifyPage() {
     <div className={styles.page}>
       <Head>
         <title>Plushify Your PFP — Plushify</title>
-        <meta name="description" content="Upload your PFP and see it transformed into a plush toy. Order your 1/1 plush + NFT." />
+        <meta
+          name="description"
+          content="Upload any PFP, meme, or avatar and watch Plushify turn it into a plush concept. Physical plush + matching 1/1 NFT available to early supporters."
+        />
       </Head>
 
       <header className={styles.header}>
         <a href="/" className={styles.logo}>🧸 Plushify</a>
-        <a href="https://pump.fun" className={styles.pill} target="_blank" rel="noopener noreferrer">Buy $PLUSH</a>
+        <a href={PUMP_FUN_URL} className={styles.pill} target="_blank" rel="noopener noreferrer">Buy $PLUSH</a>
       </header>
 
       <main className={styles.main}>
         <div className={styles.hero}>
           <h1>Plushify your PFP.</h1>
-          <p>Upload any photo — avatar, meme, portrait. The machine turns it into a plush.</p>
+          <p>Upload any photo — avatar, meme, portrait, mascot. The machine turns it into a plush concept in seconds.</p>
         </div>
 
         <div className={styles.studio}>
-          {/* Upload */}
           <div className={styles.panel}>
-            <div className={styles.panelLabel}>Your photo</div>
+            <div className={styles.panelLabel}>Your image</div>
             <div
               className={`${styles.dropzone} ${dragging ? styles.dragging : ''} ${preview ? styles.hasImage : ''}`}
               onClick={() => fileRef.current.click()}
               onDrop={handleDrop}
-              onDragOver={(e) => { e.preventDefault(); setDragging(true); }}
+              onDragOver={(e) => {
+                e.preventDefault();
+                setDragging(true);
+              }}
               onDragLeave={() => setDragging(false)}
             >
               {preview ? (
-                <img src={preview} alt="Your PFP" className={styles.uploadedImage} />
+                <img src={preview} alt="Your upload" className={styles.uploadedImage} />
               ) : (
                 <div className={styles.dropPrompt}>
                   <span className={styles.dropIcon}>📎</span>
-                  <span>Drop your PFP here</span>
+                  <span>Drop your image here</span>
                   <span className={styles.dropSub}>or click to browse</span>
                 </div>
               )}
@@ -99,17 +106,15 @@ export default function PlushifyPage() {
             />
             {preview && !loading && (
               <button className={styles.plushifyBtn} onClick={handleSubmit}>
-                🧸 Plushify it
+                🧸 Run the Plushifier
               </button>
             )}
           </div>
 
-          {/* Arrow */}
           <div className={styles.arrow}>→</div>
 
-          {/* Result */}
           <div className={styles.panel}>
-            <div className={styles.panelLabel}>Your plush</div>
+            <div className={styles.panelLabel}>Your plush concept</div>
             <div className={`${styles.dropzone} ${styles.resultZone}`}>
               {loading ? (
                 <div className={styles.loading}>
@@ -131,7 +136,7 @@ export default function PlushifyPage() {
                   className={styles.nameInput}
                   placeholder="Your name / handle (optional)"
                   value={name}
-                  onChange={e => setName(e.target.value)}
+                  onChange={(e) => setName(e.target.value)}
                 />
                 <button
                   className={styles.orderBtn}
@@ -148,8 +153,11 @@ export default function PlushifyPage() {
                       const data = await res.json();
                       if (!res.ok || data.error) throw new Error(data.error || `Server error ${res.status}`);
                       setSubmitted(true);
-                    } catch(e) { setError(`Submit failed: ${e.message}`); }
-                    finally { setSubmitting(false); }
+                    } catch (e) {
+                      setError(`Submit failed: ${e.message}`);
+                    } finally {
+                      setSubmitting(false);
+                    }
                   }}
                 >
                   {submitting ? 'Submitting...' : '🏟️ Submit to the Arena →'}
@@ -167,7 +175,7 @@ export default function PlushifyPage() {
         {error && <div className={styles.error}>⚠️ {error}</div>}
 
         <p className={styles.disclaimer}>
-          Preview is AI-generated. Physical plush + 1/1 NFT available to $PLUSH holders first.
+          Preview is AI-generated. Physical plush + matching 1/1 NFT are part of the Plushify roadmap. Early supporters and $PLUSH holders get first access.
         </p>
       </main>
     </div>

@@ -1,33 +1,53 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
+const PUMP_FUN_URL = 'https://pump.fun/coin/4B2obgHGfUYg9nEvENpnBv9WJut8pXtKDPHx4VsRpump'
+const X_URL = 'https://x.com/ThePlushifier'
+
 export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Plushify — Turn Memes Into Plush</title>
-        <meta name="description" content="The machine that turns your PFP into a plush. Submit any photo → exact replica + 1/1 NFT. Mission: flip Toys R Us. $PLUSH on Pump.fun" />
+        <title>Plushify — Your PFP. But soft.</title>
+        <meta
+          name="description"
+          content="The internet's toy factory. Submit any photo, meme, or PFP and get an exact plush replica made to order. Every plush comes with a 1/1 NFT. $PLUSH is live on Pump.fun."
+        />
+        <meta property="og:title" content="Plushify — Your PFP. But soft." />
+        <meta
+          property="og:description"
+          content="Turn your PFP, meme, or avatar into a custom plush collectible. Back the mission with $PLUSH on Pump.fun."
+        />
+        <meta property="og:image" content="/mascot.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Plushify — Your PFP. But soft." />
+        <meta
+          name="twitter:description"
+          content="The Biggest Toy Company on Solana starts here. Custom plush replicas, 1/1 NFTs, and $PLUSH on Pump.fun."
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
-
-        {/* HERO */}
         <section className={styles.hero}>
           <div className={styles.heroContent}>
-            <p className={styles.eyebrow}>$PLUSH on Pump.fun</p>
+            <p className={styles.eyebrow}>The Biggest Toy Company on Solana</p>
             <h1 className={styles.headline}>
-              Turn memes<br/>into plush.
+              Your PFP.<br />
+              But soft.
             </h1>
             <p className={styles.subheadline}>
-              The internet's toy factory is open.<br/>
-              Submit any photo — PFP, meme, portrait — and get an exact plush replica made to order. Every plush comes with a 1/1 NFT.
+              The internet&apos;s toy factory is open.
+              <br />
+              Submit any photo — your PFP, your favorite meme, any avatar — and Plushify turns it into an exact plush replica made to order.
+              <br />
+              Every plush comes with a 1/1 NFT.
             </p>
             <div className={styles.ctaRow}>
               <a href="/plushify" className={styles.ctaPrimary}>
                 🧸 Plushify your PFP
               </a>
-              <a href="https://pump.fun" className={styles.ctaSecondary} target="_blank" rel="noopener noreferrer">
+              <a href={PUMP_FUN_URL} className={styles.ctaSecondary} target="_blank" rel="noopener noreferrer">
                 Buy $PLUSH
               </a>
             </div>
@@ -37,15 +57,16 @@ export default function Home() {
           </div>
         </section>
 
-        {/* MISSION */}
         <section className={styles.mission}>
           <div className={styles.missionInner}>
             <p className={styles.missionEyebrow}>The Mission</p>
             <h2>Flip Toys R Us.</h2>
             <p>
-              Toys R Us was worth $11 billion at its peak.<br/>
-              The internet killed it.<br/>
-              Now the internet is going to build something bigger.
+              Toys R Us hit an all-time-high valuation of $11B.
+              <br />
+              The old toy empire died.
+              <br />
+              We&apos;re building the internet-native replacement — meme-first, collectible-first, community-owned.
             </p>
             <div className={styles.statRow}>
               <div className={styles.stat}>
@@ -55,49 +76,48 @@ export default function Home() {
               <div className={styles.statDivider}>→</div>
               <div className={styles.stat}>
                 <span className={styles.statNum}>$PLUSH</span>
-                <span className={styles.statLabel}>Our target</span>
+                <span className={styles.statLabel}>The mission</span>
               </div>
             </div>
           </div>
         </section>
 
-        {/* HOW IT WORKS */}
         <section className={styles.howItWorks}>
           <h2>How it works</h2>
           <div className={styles.steps}>
             <div className={styles.step}>
               <span className={styles.stepNum}>01</span>
-              <h3>Submit your photo</h3>
-              <p>Any PFP, meme, avatar, or portrait. The machine accepts all inputs.</p>
+              <h3>Submit your image</h3>
+              <p>Drop in any PFP, meme, portrait, mascot, or cursed little internet creature.</p>
             </div>
             <div className={styles.step}>
               <span className={styles.stepNum}>02</span>
-              <h3>The Plushifier gets to work</h3>
-              <p>Your image goes into the machine. An exact plush replica comes out.</p>
+              <h3>The Plushifier works the machine</h3>
+              <p>We turn the original into a plush design built to stay recognizable, weird, and collectible.</p>
             </div>
             <div className={styles.step}>
               <span className={styles.stepNum}>03</span>
               <h3>Receive plush + 1/1 NFT</h3>
-              <p>Your plush ships to your door. Your NFT mints to your wallet. No two alike. Ever.</p>
+              <p>Your physical plush ships to your door. Your matching 1/1 NFT lands in your wallet.</p>
             </div>
           </div>
         </section>
 
-        {/* CTA BANNER */}
         <section className={styles.ctaBanner}>
-          <h2>Your PFP. But soft. 🧸</h2>
-          <p>The factory is warming up. $PLUSH holders get first access.</p>
-          <a href="https://pump.fun" className={styles.ctaPrimary} target="_blank" rel="noopener noreferrer">
+          <h2>Back the toy factory.</h2>
+          <p>$PLUSH is live on Pump.fun. Plush drops, early access, and the whole ridiculous mission start here.</p>
+          <a href={PUMP_FUN_URL} className={styles.ctaPrimary} target="_blank" rel="noopener noreferrer">
             Get $PLUSH on Pump.fun
           </a>
         </section>
 
-        {/* FOOTER */}
         <footer className={styles.footer}>
-          <p>© 2025 Plushify · <a href="https://x.com/ThePlushifier" target="_blank" rel="noopener noreferrer">@ThePlushifier</a> · $PLUSH on Pump.fun</p>
+          <p>
+            © 2026 Plushify · <a href={X_URL} target="_blank" rel="noopener noreferrer">@ThePlushifier</a> ·{' '}
+            <a href={PUMP_FUN_URL} target="_blank" rel="noopener noreferrer">$PLUSH on Pump.fun</a>
+          </p>
           <p className={styles.disclaimer}>$PLUSH is a meme coin. Not financial advice. Do your own research.</p>
         </footer>
-
       </main>
     </div>
   )
