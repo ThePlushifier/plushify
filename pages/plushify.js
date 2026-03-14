@@ -6,8 +6,11 @@ export default function PlushifyPage() {
   const [preview, setPreview] = useState(null);
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(null);
   const [dragging, setDragging] = useState(false);
+  const [name, setName] = useState('');
   const fileRef = useRef();
 
   const handleFile = (file) => {
@@ -122,16 +125,38 @@ export default function PlushifyPage() {
                 </div>
               )}
             </div>
-            {result && (
-              <button
-                className={styles.orderBtn}
-                onClick={() => {
-                  sessionStorage.setItem('plushify_order_image', result);
-                  window.location.href = '/order';
-                }}
-              >
-                Order your physical plush + NFT →
-              </button>
+            {result && !submitted && (
+              <div className={styles.submitArena}>
+                <input
+                  className={styles.nameInput}
+                  placeholder="Your name / handle (optional)"
+                  value={name}
+                  onChange={e => setName(e.target.value)}
+                />
+                <button
+                  className={styles.orderBtn}
+                  disabled={submitting}
+                  onClick={async () => {
+                    setSubmitting(true);
+                    try {
+                      await fetch('/api/arena/submit', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ image: result, name: name || 'Anonymous' }),
+                      });
+                      setSubmitted(true);
+                    } catch(e) { setError(e.message); }
+                    finally { setSubmitting(false); }
+                  }}
+                >
+                  {submitting ? 'Submitting...' : '🏟️ Submit to the Arena →'}
+                </button>
+              </div>
+            )}
+            {submitted && (
+              <a href="/arena" className={styles.orderBtn}>
+                ✅ Submitted! View the Arena →
+              </a>
             )}
           </div>
         </div>

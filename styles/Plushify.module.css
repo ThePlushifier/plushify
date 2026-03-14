@@ -153,6 +153,27 @@
   transform: translateY(-2px);
 }
 
+.submitArena {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nameInput {
+  background: #13131a;
+  border: 1px solid #1e1e2e;
+  border-radius: 10px;
+  padding: 12px 16px;
+  color: #f0f0ff;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.nameInput:focus { border-color: #ff6eb4; }
+.nameInput::placeholder { color: #444455; }
+
 .orderBtn {
   display: block;
   background: linear-gradient(135deg, #6effd4, #6eb4ff);
@@ -163,13 +184,18 @@
   border-radius: 12px;
   text-align: center;
   text-decoration: none;
+  border: none;
+  cursor: pointer;
+  width: 100%;
   transition: opacity 0.15s, transform 0.15s;
 }
 
-.orderBtn:hover {
+.orderBtn:hover:not(:disabled) {
   opacity: 0.9;
   transform: translateY(-2px);
 }
+
+.orderBtn:disabled { opacity: 0.5; cursor: default; }
 
 .loading {
   display: flex;
