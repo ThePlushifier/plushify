@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "post:x": "node scripts/post-x.js"
   },
   "dependencies": {
     "@pump-fun/agent-payments-sdk": "^3.0.0",
@@ -20,6 +21,7 @@
     "node-fetch": "^3.3.2",
     "openai": "^6.29.0",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "twitter-api-v2": "^1.29.0"
   }
 }
