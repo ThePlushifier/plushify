@@ -1,6 +1,4 @@
 import { createClient } from '@supabase/supabase-js';
-import FormData from 'form-data';
-import fetch from 'node-fetch';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end();
@@ -15,26 +13,36 @@ export default async function handler(req, res) {
 
   const today = new Date().toISOString().split('T')[0];
 
-  // Upload to catbox.moe (free, reliable)
-  let imageUrl = image;
+  // Upload image to Supabase Storage using fetch directly
+  let imageUrl = null;
   try {
     const base64 = image.replace(/^data:image\/\w+;base64,/, '');
     const buffer = Buffer.from(base64, 'base64');
-    const form = new FormData();
-    form.append('reqtype', 'fileupload');
-    form.append('time', '72h');
-    form.append('fileToUpload', buffer, { filename: 'plush.png', contentType: 'image/png' });
-    const uploadRes = await fetch('https://litterbox.catbox.moe/resources/internals/api.php', {
-      method: 'POST',
-      body: form,
-      headers: form.getHeaders(),
-    });
-    const url = await uploadRes.text();
-    if (url.startsWith('https://')) imageUrl = url.trim();
+    const filename = `${Date.now()}.png`;
+
+    const uploadRes = await fetch(
+      `${process.env.SUPABASE_URL}/storage/v1/object/plushes/${filename}`,
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${process.env.SUPABASE_ANON_KEY}`,
+          'apikey': process.env.SUPABASE_ANON_KEY,
+          'Content-Type': 'image/png',
+          'x-upsert': 'true',
+        },
+        body: buffer,
+      }
+    );
+
+    if (uploadRes.ok) {
+      imageUrl = `${process.env.SUPABASE_URL}/storage/v1/object/public/plushes/${filename}`;
+    }
   } catch (e) {
-    console.error('Image upload failed:', e.message);
-    // Fall back to storing data URL (truncated for DB)
+    console.error('Storage upload failed:', e.message);
   }
+
+  // If storage failed, store as base64 data URL directly
+  if (!imageUrl) imageUrl = image;
 
   const { data, error } = await supabase.from('submissions').insert({
     image: imageUrl,
