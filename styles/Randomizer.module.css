@@ -1,0 +1,53 @@
+.page { min-height: 100vh; background: #0a0a0f; color: #f0f0ff; font-family: 'Inter', system-ui, sans-serif; }
+
+.header { display: flex; align-items: center; justify-content: space-between; padding: 20px 40px; border-bottom: 1px solid #1e1e2e; }
+.logo { font-size: 20px; font-weight: 900; text-decoration: none; color: #f0f0ff; }
+
+.main { max-width: 640px; margin: 0 auto; padding: 60px 24px; }
+
+.card { background: #13131a; border: 1px solid #1e1e2e; border-radius: 24px; padding: 48px; text-align: center; margin-bottom: 48px; }
+
+.eyebrow { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: #ff6eb4; margin-bottom: 16px; }
+
+.card h1 { font-size: 36px; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 16px; background: linear-gradient(135deg, #f0f0ff, #ff6eb4, #ffe66e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+.sub { font-size: 16px; color: #888899; line-height: 1.7; margin-bottom: 40px; }
+.sub strong { color: #f0f0ff; }
+
+.connectWrap { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.connectHint { color: #888899; font-size: 14px; }
+
+.payWrap { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+
+.payBtn { background: linear-gradient(135deg, #ff6eb4, #ffe66e); color: #000; border: none; font-weight: 900; font-size: 17px; padding: 18px 36px; border-radius: 14px; cursor: pointer; transition: opacity 0.15s, transform 0.15s; width: 100%; }
+.payBtn:hover:not(:disabled) { opacity: 0.9; transform: translateY(-2px); }
+.payBtn:disabled { opacity: 0.5; cursor: default; }
+
+.walletInfo { font-size: 12px; color: #444455; font-family: monospace; }
+
+.status { display: flex; align-items: center; gap: 12px; color: #888899; font-size: 14px; }
+.spinner { width: 18px; height: 18px; border: 2px solid #1e1e2e; border-top-color: #ff6eb4; border-radius: 50%; animation: spin 0.8s linear infinite; flex-shrink: 0; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.resultWrap { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.resultLabel { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #888899; }
+.resultNumber { font-size: 96px; font-weight: 900; letter-spacing: -0.05em; background: linear-gradient(135deg, #6effd4, #6eb4ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
+.resultSub { font-size: 14px; color: #6effd4; }
+.resetBtn { background: #1e1e2e; color: #f0f0ff; border: none; font-weight: 700; padding: 12px 24px; border-radius: 10px; cursor: pointer; font-size: 14px; margin-top: 8px; }
+
+.errorWrap { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.errorText { color: #ff6eb4; font-size: 14px; }
+
+/* How it works */
+.how { text-align: center; }
+.how h2 { font-size: 24px; font-weight: 900; margin-bottom: 28px; }
+.steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.step { background: #13131a; border: 1px solid #1e1e2e; border-radius: 14px; padding: 20px; display: flex; align-items: center; gap: 14px; text-align: left; }
+.step span { background: linear-gradient(135deg, #ff6eb4, #ffe66e); color: #000; font-weight: 900; font-size: 16px; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.step p { font-size: 14px; color: #888899; margin: 0; }
+
+@media (max-width: 500px) {
+  .card { padding: 28px 20px; }
+  .steps { grid-template-columns: 1fr; }
+  .header { padding: 16px 20px; }
+}
