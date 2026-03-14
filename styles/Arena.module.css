@@ -1,0 +1,196 @@
+.page {
+  min-height: 100vh;
+  background: #0a0a0f;
+  color: #f0f0ff;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  border-bottom: 1px solid #1e1e2e;
+}
+
+.logo { font-size: 20px; font-weight: 900; text-decoration: none; color: #f0f0ff; }
+
+.pill {
+  background: linear-gradient(135deg, #ff6eb4, #ffe66e);
+  color: #000;
+  font-weight: 800;
+  font-size: 14px;
+  padding: 10px 20px;
+  border-radius: 100px;
+  text-decoration: none;
+}
+
+.main { max-width: 1100px; margin: 0 auto; padding: 60px 24px; }
+
+.hero { text-align: center; margin-bottom: 60px; }
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #ff6eb4;
+  margin-bottom: 12px;
+}
+
+.hero h1 {
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #f0f0ff, #ff6eb4, #ffe66e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 16px;
+}
+
+.hero p { font-size: 18px; color: #888899; margin-bottom: 32px; }
+
+.timer {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  background: #13131a;
+  border: 1px solid #1e1e2e;
+  border-radius: 16px;
+  padding: 20px 40px;
+  gap: 4px;
+}
+
+.timerLabel { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #888899; }
+.timerCount { font-size: 32px; font-weight: 900; letter-spacing: -0.03em; color: #ffe66e; }
+
+/* Leader card */
+.leaderCard {
+  background: linear-gradient(135deg, rgba(255,110,180,0.1), rgba(255,230,110,0.1));
+  border: 1px solid rgba(255,110,180,0.3);
+  border-radius: 20px;
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.leaderBadge {
+  background: rgba(255,230,110,0.15);
+  color: #ffe66e;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 100px;
+  white-space: nowrap;
+  align-self: flex-start;
+}
+
+.leaderImg {
+  width: 100px;
+  height: 100px;
+  border-radius: 16px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.leaderInfo { display: flex; flex-direction: column; gap: 6px; }
+.leaderName { font-size: 20px; font-weight: 800; }
+.leaderVotes { font-size: 14px; color: #888899; }
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #13131a;
+  border: 1px solid #1e1e2e;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: border-color 0.2s, transform 0.2s;
+  position: relative;
+}
+
+.card:hover { border-color: #ff6eb4; transform: translateY(-4px); }
+.topCard { border-color: rgba(255,230,110,0.5); }
+
+.rank {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 18px;
+  background: rgba(0,0,0,0.6);
+  border-radius: 8px;
+  padding: 4px 8px;
+  backdrop-filter: blur(4px);
+}
+
+.cardImg { width: 100%; aspect-ratio: 1; object-fit: cover; }
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  gap: 8px;
+}
+
+.cardName { font-size: 13px; font-weight: 600; truncate: ellipsis; overflow: hidden; white-space: nowrap; }
+
+.voteBtn {
+  background: #1e1e2e;
+  color: #f0f0ff;
+  border: none;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+
+.voteBtn:hover:not(:disabled) { background: #ff6eb4; color: #000; }
+.voted { background: rgba(110,255,212,0.15) !important; color: #6effd4 !important; cursor: default; }
+
+/* Loading */
+.loadingGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.skeleton {
+  background: #13131a;
+  border-radius: 16px;
+  aspect-ratio: 1;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.empty { text-align: center; padding: 80px 0; color: #888899; }
+.empty p { font-size: 18px; margin-bottom: 24px; }
+.emptyBtn {
+  display: inline-block;
+  background: linear-gradient(135deg, #ff6eb4, #ffe66e);
+  color: #000;
+  font-weight: 800;
+  padding: 14px 28px;
+  border-radius: 12px;
+  text-decoration: none;
+}
+
+@media (max-width: 600px) {
+  .header { padding: 16px 20px; }
+  .leaderCard { flex-direction: column; text-align: center; }
+}
